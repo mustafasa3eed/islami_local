@@ -32,7 +32,9 @@ class _HadethTabState extends State<HadethTab> {
                   itemCount: allHadethItems.length,
                   separatorBuilder: (buildContext, index) {
                     return Container(
-                      color: provider.isDarkMode()?MyThemeData.accentColorDark:MyThemeData.primaryColor,
+                      color: provider.isDarkMode()
+                          ? MyThemeData.accentColorDark
+                          : MyThemeData.primaryColor,
                       height: 1,
                       margin: EdgeInsets.symmetric(horizontal: 24),
                     );
