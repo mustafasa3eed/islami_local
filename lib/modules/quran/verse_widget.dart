@@ -27,7 +27,7 @@ class _VerseWidgetState extends State<VerseWidget> {
         style: TextStyle(
           color: provider.isDarkMode()?MyThemeData.accentColorDark:MyThemeData.primaryColor,
           fontSize: provider.fontSize,
-          fontFamily: 'DTHULUT'
+          fontFamily: 'UTHMANIC'
         ),
         textDirection: TextDirection.rtl,
       ),
