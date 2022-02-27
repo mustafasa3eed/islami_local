@@ -4,6 +4,7 @@ import 'package:islami/main.dart';
 import 'package:islami/modules/quran/verse_widget.dart';
 import 'package:islami/providers/app_config_provider.dart';
 import 'package:islami/shared/components/components.dart';
+import 'package:islami/shared/components/rounded_icon_button.dart';
 import 'package:provider/provider.dart';
 
 class SuraDetailsScreen extends StatefulWidget {
@@ -38,24 +39,55 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
               ),
             ),
           ),
-          body: Container(
-            decoration: BoxDecoration(
-              color: provider.isDarkMode()
-                  ? MyThemeData.primaryColorDark
-                  : Colors.white,
-              borderRadius: BorderRadius.circular(24),
-            ),
-            margin: EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-            padding: EdgeInsets.all(8),
-            child: ayat.isEmpty
-                ?DefaultProgressIndicator()
-                : ListView.builder(
-                    physics: PageScrollPhysics(),
-                    itemBuilder: (buildContext, index) {
-                      return VerseWidget(ayat[index], index);
-                    },
-                    itemCount: ayat.length,
+          body: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    RoundIconButton(
+                      icon: Icons.add,
+                      onPressed: () {
+                        provider.incrementFontSize();
+                      },
+                      color: provider.isDarkMode()
+                          ? MyThemeData.accentColorDark
+                          : MyThemeData.primaryColor,
+                    ),
+                    RoundIconButton(
+                        icon: Icons.remove,
+                        onPressed: () {
+                          provider.decrementFontSize();
+                        },
+                        color: provider.isDarkMode()
+                            ? MyThemeData.accentColorDark
+                            : MyThemeData.primaryColor)
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: provider.isDarkMode()
+                        ? MyThemeData.primaryColorDark
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(24),
                   ),
+                  margin: EdgeInsets.symmetric(horizontal: 24, vertical: 48),
+                  padding: EdgeInsets.all(8),
+                  child: ayat.isEmpty
+                      ? DefaultProgressIndicator()
+                      : ListView.builder(
+                          physics: PageScrollPhysics(),
+                          itemBuilder: (buildContext, index) {
+                            return VerseWidget(ayat[index], index);
+                          },
+                          itemCount: ayat.length,
+                        ),
+                ),
+              ),
+            ],
           ))
     ]);
   }
@@ -76,7 +108,6 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
     ayat = verses;
     setState(() {});
   }
-
 }
 
 class SuraDetailsArgs {
@@ -85,4 +116,3 @@ class SuraDetailsArgs {
 
   SuraDetailsArgs(this.index, this.name);
 }
-
