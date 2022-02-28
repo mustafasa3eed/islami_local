@@ -11,7 +11,7 @@ class AppConfigProvider extends ChangeNotifier {
   bool isPlaying = false;
   int Counter = 0;
   double RotatingAngel = 0;
-  var DoaaData = ['سبحان الله', 'الحمد لله', 'الله أكبر'];
+  var DoaaData = ['سبحان الله', 'الحمد لله', 'الله أكبر','اللَّهُمَّ صَلِّ ْعلى مُحمَّد'];
   String DoaaText = 'سبحان الله';
   double fontSize = 20.0;
 
