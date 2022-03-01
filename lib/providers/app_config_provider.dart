@@ -11,7 +11,7 @@ class AppConfigProvider extends ChangeNotifier {
   bool isPlaying = false;
   int Counter = 0;
   double RotatingAngel = 0;
-  List<String> DoaaData = ['سبحان الله', 'الحمد لله', 'الله أكبر'];
+  var DoaaData = ['سبحان الله', 'الحمد لله', 'الله أكبر','اللَّهُمَّ صَلِّ ْعلى مُحمَّد'];
   String DoaaText = 'سبحان الله';
   double fontSize = 20.0;
 
@@ -51,21 +51,31 @@ class AppConfigProvider extends ChangeNotifier {
   void onSebhaClick() {
    incrementRotatingAngel();
     incrementCounter();
-    if (Counter == 0) {
-      DoaaText = DoaaData[0];
-    } else if (Counter == 33) {
-      DoaaText = DoaaData[1];
-    } else if (Counter == 66) {
-      DoaaText = DoaaData[2];
-    } else if (Counter == 99) {
-      DoaaText = DoaaData[0];
-      Counter = 0;
-    }
+    // if (Counter == 0) {
+    //   DoaaText = DoaaData[0];
+    // } else if (Counter == 33) {
+    //   DoaaText = DoaaData[1];
+    // } else if (Counter == 66) {
+    //   DoaaText = DoaaData[2];
+    // } else if (Counter == 99) {
+    //   DoaaText = DoaaData[0];
+    //   Counter = 0;
+    // }
   }
 
   void incrementFontSize(){
-    fontSize ++;
-    notifyListeners();
+    if(fontSize < 30){
+      fontSize ++;
+      notifyListeners();
+    } else return;
+
+  }
+  void decrementFontSize(){
+    if(fontSize > 20){
+      fontSize --;
+      notifyListeners();
+    } else return;
+
   }
 
   Future<RadioResponse> fetchRadio() async {
