@@ -31,6 +31,10 @@ class AppConfigProvider extends ChangeNotifier {
     Counter ++;
     notifyListeners();
   }
+  void resetCounter(){
+    Counter = 0;
+    notifyListeners();
+  }
 
   void changeTheme(ThemeMode newMode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -49,7 +53,7 @@ class AppConfigProvider extends ChangeNotifier {
   }
 
   void onSebhaClick() {
-   incrementRotatingAngel();
+    incrementRotatingAngel();
     incrementCounter();
     // if (Counter == 0) {
     //   DoaaText = DoaaData[0];

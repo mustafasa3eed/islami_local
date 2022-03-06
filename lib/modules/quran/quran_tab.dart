@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/modules//quran/sura_name_widget.dart';
 import 'package:islami/main.dart';
 import 'package:islami/providers/app_config_provider.dart';
@@ -133,7 +134,8 @@ class QuranTab extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/quran_top_logo.png'),
+              Image.asset('assets/images/quran_top_logo.png',
+                width: 205.w,height: 227.h,),
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/main.dart';
 import 'package:islami/providers/app_config_provider.dart';
 import 'package:provider/provider.dart';
@@ -23,34 +24,32 @@ class _TasbehTabState extends State<TasbehTab> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.04,
+                height: 40.h,
               ),
               Stack(
-                alignment: Alignment(0.25, -2.1),
+                alignment: Alignment(0.4.w,-2.3.w),
                 children: [
-                  Container(
-                    width: 73,
-                    height: 105,
-                    child: Image.asset(provider.isDarkMode()
-                        ? 'assets/images/head_of_sebha_dark.png'
-                        : 'assets/images/head_of_sebha.png'),
-                  ),
+                  Image.asset(provider.isDarkMode()
+                      ? 'assets/images/head_of_sebha_dark.png'
+                      : 'assets/images/head_of_sebha.png',
+                    width: 73.w,
+                    height: 105.h,),
                   Transform.rotate(
                     angle: provider.RotatingAngel,
-                    child: Container(
-                        height: 242,
-                        child: Image.asset(provider.isDarkMode()
-                            ? 'assets/images/body_of_sebha_dark.png'
-                            : 'assets/images/body_of_sebha.png')),
+                    child: Image.asset(provider.isDarkMode()
+                        ? 'assets/images/body_of_sebha_dark.png'
+                        : 'assets/images/body_of_sebha.png',
+                      width: 232.w,
+                      height: 234.h,),
                   ),
                 ],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.04,
+                height: 40.h,
               ),
               Container(
-                width: 200,
-                height: 50,
+                width: 200.w,
+                height: 50.h,
                 margin: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                     color: provider.isDarkMode()
@@ -63,7 +62,8 @@ class _TasbehTabState extends State<TasbehTab> {
                     DropdownButton(
                       underline: Container(
                         color: Colors.transparent,
-                      ),alignment: AlignmentDirectional.center,
+                      ),
+                      alignment: AlignmentDirectional.center,
                       dropdownColor: provider.isDarkMode()
                           ? MyThemeData.primaryColorDark
                           : Colors.white,
@@ -82,27 +82,23 @@ class _TasbehTabState extends State<TasbehTab> {
                                 color: provider.isDarkMode()
                                     ? Colors.white
                                     : Colors.black,
-                            fontSize: 20.0),
+                                fontSize: 20.0.sp),
                           ),
                         );
                       }).toList(),
                       // After selecting the desired option,it will
                       // change button value to selected value
                       onChanged: (String? newValue) {
-                        setState(() {
-                          provider.DoaaText = newValue!;
-                        });
+                        provider.DoaaText = newValue!;
+                        provider.resetCounter();
                       },
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.04,
-              ),
               Container(
-                width: 50,
-                height: 50,
+                width: 50.w,
+                height: 50.h,
                 decoration: BoxDecoration(
                   color: provider.isDarkMode()
                       ? MyThemeData.primaryColorDark
@@ -113,14 +109,15 @@ class _TasbehTabState extends State<TasbehTab> {
                   child: Text(
                     '${provider.Counter}',
                     style: TextStyle(
-                      color: provider.isDarkMode() ? Colors.white : Colors.black,
-                      fontSize: 30,
+                      color:
+                      provider.isDarkMode() ? Colors.white : Colors.black,
+                      fontSize: 30.sp,
                     ),
                   ),
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.04,
+                height: 30.h,
               ),
               IconButton(
                 onPressed: () {
@@ -130,7 +127,7 @@ class _TasbehTabState extends State<TasbehTab> {
                 color: provider.isDarkMode()
                     ? MyThemeData.accentColorDark
                     : MyThemeData.primaryColor,
-                iconSize: 60,
+                iconSize: 60.h,
               ),
             ],
           ),

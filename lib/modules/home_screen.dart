@@ -10,7 +10,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami/providers/app_config_provider.dart';
 import 'package:provider/provider.dart';
 
-
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'Home Screen';
 
@@ -32,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
               : 'assets/images/main_background.png',
           fit: BoxFit.fill,
           width: double.infinity,
+          height: double.infinity,
         ),
         Directionality(
           textDirection: TextDirection.ltr,
@@ -44,13 +44,15 @@ class _HomeScreenState extends State<HomeScreen> {
               actions: [
                 IconButton(
                   icon: Icon(
+                    provider.isDarkMode() ? Icons.light_mode : Icons.dark_mode,
+                    color: provider.isDarkMode()
+                        ? MyThemeData.accentColorDark
+                        : MyThemeData.primaryColorDark,
+                  ),
+                  onPressed: () {
                     provider.isDarkMode()
-                      ?Icons.light_mode
-                        :Icons.dark_mode,
-                    color: provider.isDarkMode()?MyThemeData.accentColorDark:MyThemeData.primaryColorDark,
-                  ), onPressed: () { provider.isDarkMode()
-                    ?provider.changeTheme(ThemeMode.light)
-                    :provider.changeTheme(ThemeMode.dark);
+                        ? provider.changeTheme(ThemeMode.light)
+                        : provider.changeTheme(ThemeMode.dark);
                   },
                 ),
               ],
@@ -75,6 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ? MyThemeData.accentColorDark
                         : Colors.white,
                   ),
+                  Icon(Icons.headphones,
+                      color: provider.isDarkMode()
+                          ? MyThemeData.accentColorDark
+                          : Colors.white),
                   ImageIcon(
                     AssetImage('assets/images/ic_hadeth.png'),
                     color: provider.isDarkMode()
@@ -93,10 +99,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ? MyThemeData.accentColorDark
                         : Colors.white,
                   ),
-                  // Icon(Icons.settings,
-                  //     color: provider.isDarkMode()
-                  //         ? MyThemeData.accentColorDark
-                  //         : Colors.white),
                 ],
               ),
             ),
@@ -111,9 +113,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<dynamic> views = [
     QuranTab(),
+    // RecitersTab(),
+    // SettingsTab(),
     HadethTab(),
     TasbehTab(),
     RadioTab(),
-    // SettingsTab()
   ];
 }

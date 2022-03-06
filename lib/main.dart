@@ -1,7 +1,7 @@
 import'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/modules/home_screen.dart';
-import 'package:islami/modules/quran/pdf_sura_view.dart';
 import 'package:islami/modules/quran/sura_details_screen.dart';
 import 'package:islami/modules/hadeth/hadeth_details_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -45,9 +45,6 @@ class MyThemeData {
   static final ThemeData darkTheme = ThemeData(
       fontFamily: 'ElMessiri',
       primaryTextTheme: TextTheme(
-        headline1: TextStyle(color: Colors.white),
-        headline2: TextStyle(color: Colors.white, fontSize: 24),
-        headline3: TextStyle(color: Colors.white),
       ),
       scaffoldBackgroundColor: Colors.transparent,
       primaryColor: MyThemeData.primaryColorDark,
@@ -73,24 +70,28 @@ class _MainApplicationState extends State<MainApplication> {
   late AppConfigProvider provider;
   @override
   Widget build(BuildContext context) {
-     provider = Provider.of<AppConfigProvider>(context);
+    provider = Provider.of<AppConfigProvider>(context);
     initSharedPreferences();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Islami',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: MyThemeData.lightTheme,
-      darkTheme: MyThemeData.darkTheme,
-      themeMode: provider.appTheme,
-      locale: Locale(provider.appLanguage),
-      routes: {
-        HomeScreen.routeName: (buildContext) => HomeScreen(),
-        HadethDetailsScreen.routeName: (buildContext) => HadethDetailsScreen(),
-        SuraDetailsScreen.routeName: (buildContext) => SuraDetailsScreen(),
-        SuraView.routeName: (buildContext) => SuraView(),
-      },
-      initialRoute: HomeScreen.routeName,
+    return ScreenUtilInit(
+      designSize: Size(412, 873),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: ()=> MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Islami',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: MyThemeData.lightTheme,
+        darkTheme: MyThemeData.darkTheme,
+        themeMode: provider.appTheme,
+        locale: Locale(provider.appLanguage),
+        routes: {
+          HomeScreen.routeName: (buildContext) => HomeScreen(),
+          HadethDetailsScreen.routeName: (buildContext) => HadethDetailsScreen(),
+          SuraDetailsScreen.routeName: (buildContext) => SuraDetailsScreen(),
+        },
+        initialRoute: HomeScreen.routeName,
+      ),
     );
   }
   void initSharedPreferences() async {
