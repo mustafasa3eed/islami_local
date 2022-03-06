@@ -77,10 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ? MyThemeData.accentColorDark
                         : Colors.white,
                   ),
-                  Icon(Icons.headphones,
-                      color: provider.isDarkMode()
-                          ? MyThemeData.accentColorDark
-                          : Colors.white),
+                  // Icon(Icons.headphones,
+                  //     color: provider.isDarkMode()
+                  //         ? MyThemeData.accentColorDark
+                  //         : Colors.white),
                   ImageIcon(
                     AssetImage('assets/images/ic_hadeth.png'),
                     color: provider.isDarkMode()
