@@ -8,12 +8,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AppConfigProvider extends ChangeNotifier {
   String appLanguage = 'ar';
   ThemeMode appTheme = ThemeMode.light;
-  bool isPlaying = false;
+  bool audioPlayed = false;
   int Counter = 0;
   double RotatingAngel = 0;
   var DoaaData = ['سبحان الله', 'الحمد لله', 'الله أكبر','اللَّهُمَّ صَلِّ ْعلى مُحمَّد'];
   String DoaaText = 'سبحان الله';
   double fontSize = 20.0;
+
 
 
 
